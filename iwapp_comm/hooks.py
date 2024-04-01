@@ -27,7 +27,7 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {"Address" : "public/js/address.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -116,13 +116,11 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"Address": {
+		"after_insert": "iwapp_comm.events.address.after_insert",
+	}
+}
 
 # Scheduled Tasks
 # ---------------
@@ -213,3 +211,38 @@ app_license = "MIT"
 # auth_hooks = [
 # 	"iwapp_comm.auth.validate"
 # ]
+
+fixtures = [{
+    "dt":"Custom Field",
+    "filters": [
+        ["name", "in", (
+            "Address-custom_post_office", "Address-custom_taluk"
+            )]
+    ]
+    },
+    {"dt":"Property Setter",
+        "filters": [
+            ["doc_type", "in", (
+                "Address",
+                "Customer",
+                "Supplier"
+            )]
+        ]
+    },
+    #  {"dt":"Tax Category",
+    #     "filters": [
+    #         ["name", "in", (
+    #             "Export",
+    #             "Outstate",
+    #             "Overseas",
+    #             "Instate"
+    #         )]
+    #     ]
+    # }
+    # {
+    #     "dt": "Translation",
+    #     "filters": [
+    #             ["name", "in", ("ec0adfc6e5")]
+    #     ],
+    # }
+]
