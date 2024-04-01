@@ -22,7 +22,6 @@ def after_insert(doc, method):
     pincode.save()
     doc.reload()
 
-# pincode address is fetching from here (API)
 @frappe.whitelist()
 def pincode(pin):
     if pin and len(pin)==6:
